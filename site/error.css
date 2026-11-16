@@ -1,0 +1,231 @@
+/*
+ * Generic branded CDN error page for AEM as a Cloud Service.
+ * Self-contained on purpose: no fonts or images are loaded from the AEM origin,
+ * because this page is shown exactly when that origin cannot be reached.
+ * Rebrand by changing the custom properties below and the logo in error.js.
+ */
+:root {
+  --mc-navy-900: #0b1530;   /* section headings, dark hero surface */
+  --mc-navy-800: #14213d;   /* primary text, footer links */
+  --mc-blue-600: #0c66e1;   /* primary button, links */
+  --mc-blue-500: #4c8dff;   /* accent lines on dark */
+  --mc-blue-100: #d6e2f5;   /* light content band */
+  --mc-blue-50:  #ebf3ff;   /* text on dark */
+  --mc-ink:      #212529;   /* body copy */
+  --mc-white:    #ffffff;
+  --mc-radius:   8px;
+  --mc-max:      1296px;
+  --mc-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--mc-font);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--mc-ink);
+  background: var(--mc-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { display: contents; }
+
+.mc-wrap {
+  width: 100%;
+  max-width: var(--mc-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+.mc-header {
+  background: var(--mc-white);
+  border-bottom: 1px solid rgba(0, 8, 53, 0.12);
+}
+.mc-header .mc-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+.mc-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--mc-navy-800);
+  text-decoration: none;
+}
+.mc-logo { display: block; width: 28px; height: 28px; flex: none; }
+.mc-brand-name { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+.mc-lang { display: flex; gap: 4px; }
+.mc-lang button {
+  font: inherit;
+  font-size: 14px;
+  color: var(--mc-navy-800);
+  background: none;
+  border: 0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+.mc-lang button[aria-pressed="true"] { color: var(--mc-blue-600); font-weight: 700; }
+.mc-lang button:hover { background: var(--mc-blue-50); }
+
+/* Hero */
+.mc-hero {
+  position: relative;
+  flex: 1 0 auto;
+  overflow: hidden;
+  background: var(--mc-navy-900);
+  color: var(--mc-blue-50);
+  padding: 96px 0 112px;
+}
+.mc-hero__lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.mc-hero__lines path {
+  fill: none;
+  stroke: var(--mc-blue-500);
+  stroke-width: 1.25;
+  opacity: 0.55;
+  vector-effect: non-scaling-stroke;
+}
+.mc-hero .mc-wrap { position: relative; }
+.mc-eyebrow {
+  display: inline-block;
+  margin: 0 0 24px;
+  padding: 4px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--mc-navy-900);
+  background: var(--mc-blue-100);
+  border-radius: 4px;
+}
+.mc-title {
+  max-width: 18ch;
+  margin: 0 0 20px;
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--mc-white);
+}
+.mc-lede {
+  max-width: 56ch;
+  margin: 0 0 40px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+.mc-actions { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+
+.mc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 10px 20px;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: var(--mc-radius);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.mc-btn--primary { color: var(--mc-white); background: var(--mc-blue-600); }
+.mc-btn--primary:hover { background: #0a55bd; }
+.mc-btn--ghost { color: var(--mc-blue-50); border-color: var(--mc-blue-50); background: transparent; }
+.mc-btn--ghost:hover { color: var(--mc-navy-900); background: var(--mc-blue-50); }
+.mc-btn:focus-visible,
+.mc-lang button:focus-visible,
+.mc-link:focus-visible,
+.mc-brand:focus-visible {
+  outline: 3px solid var(--mc-blue-500);
+  outline-offset: 3px;
+}
+.mc-btn svg { width: 18px; height: 18px; flex: none; }
+
+.mc-retry {
+  margin: 24px 0 0;
+  font-size: 15px;
+  color: var(--mc-blue-50);
+  min-height: 1.5em;
+}
+.mc-retry button {
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+/* Detail band */
+.mc-band {
+  background: var(--mc-blue-100);
+  color: var(--mc-navy-800);
+  padding: 40px 0;
+}
+.mc-band .mc-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px 48px;
+}
+.mc-band h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--mc-navy-900);
+}
+.mc-band p { margin: 0; font-size: 15px; }
+.mc-ref dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; font-size: 14px; }
+.mc-ref dt { font-weight: 700; }
+.mc-ref dd { margin: 0; word-break: break-all; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.mc-link { color: var(--mc-blue-600); font-weight: 700; text-decoration: none; }
+.mc-link:hover { text-decoration: underline; }
+
+/* Footer */
+.mc-footer { background: var(--mc-white); padding: 24px 0; font-size: 14px; color: var(--mc-navy-800); }
+.mc-footer .mc-wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+/* Preview-only code switcher (never rendered on the real CDN page) */
+.mc-preview {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  gap: 4px;
+  padding: 6px;
+  font-size: 13px;
+  background: var(--mc-white);
+  border-radius: var(--mc-radius);
+  box-shadow: 0 6px 24px rgba(0, 5, 33, 0.25);
+}
+body.mc-is-preview { padding-bottom: 64px; }
+.mc-preview a { padding: 4px 8px; border-radius: 4px; color: var(--mc-navy-800); text-decoration: none; }
+.mc-preview a[aria-current="true"] { color: var(--mc-white); background: var(--mc-blue-600); }
+
+@media (max-width: 640px) {
+  .mc-hero { padding: 56px 0 72px; }
+  .mc-lede { font-size: 16px; }
+  .mc-btn { width: 100%; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mc-btn { transition: none; }
+}

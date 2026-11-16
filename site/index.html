@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--
+  Preview of the AEM CDN error page.
+  This mirrors the minimal HTML the Adobe-managed CDN generates from cdn.yaml
+  (title, icoUrl, cssUrl, jsUrl). Use ?code=403|404|406|500|503 and ?lang=en|de|es.
+  The real CDN shell adds status="<code>" on #root; see simulate-503.html.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>My Company | CDN error page preview</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="error.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="error.js"></script>
+  </body>
+</html>

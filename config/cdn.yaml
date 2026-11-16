@@ -1,0 +1,14 @@
+kind: "CDN"
+version: "1"
+metadata:
+  envTypes: ["dev", "stage", "prod"]
+data:
+  # Shown when the Adobe-managed CDN cannot reach the AEM origin.
+  # The CDN serves a minimal HTML shell; error.js renders the branded content.
+  # Replace <github-user> and <repo> with your GitHub Pages location.
+  errorPages:
+    spa:
+      title: My Company
+      icoUrl: https://<github-user>.github.io/<repo>/favicon.ico
+      cssUrl: https://<github-user>.github.io/<repo>/error.css
+      jsUrl: https://<github-user>.github.io/<repo>/error.js
