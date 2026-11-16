@@ -35,9 +35,9 @@ scripts/validate.mjs     # Playwright checks at 3 viewports
 - It handles the codes the CDN supports: 403, 404, 406, 500 and 503. Any other 4xx falls back to 404 and any other 5xx to 503.
 - On 5xx errors, "Try again" is the primary action. The page also retries by itself every 30 seconds, up to 5 times per path per browser session, and the user can cancel it. On 4xx errors, "Go to home page" is the primary action.
 - The copy is in English, German and Spanish. The language comes from `?lang=` first, then the first path segment (`/de/...`), then the browser language. Have a native speaker review the German and Spanish text before production.
-- A reference block shows the status, the UTC time and the URL, so users can quote them to support.
+- A reference block shows the status, the UTC time and the URL, so users can quote them to support. The URL shows only the origin and path, because query strings can carry OIDC codes or tokens.
 - The page loads nothing from the AEM origin, because that origin is down whenever this page appears. The logo is inline SVG and the font is the system sans serif, so the page needs only `error.js` and `error.css`.
-- All dynamic text is inserted with `textContent`. The URL is the only user-controlled input and is never inserted as HTML.
+- All dynamic text is inserted with `textContent`. The URL is the only user-controlled input; it is never inserted as HTML, and its query string is not shown.
 
 ## Rebrand
 

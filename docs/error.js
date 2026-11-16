@@ -244,7 +244,8 @@
             h('dl', null, [
               h('dt', { text: t.refStatus }), h('dd', { text: status }),
               h('dt', { text: t.refTime }), h('dd', { text: timestamp }),
-              h('dt', { text: t.refUrl }), h('dd', { text: window.location.href })
+              // Origin + path only: query strings can carry OIDC codes or tokens.
+              h('dt', { text: t.refUrl }), h('dd', { text: window.location.origin + window.location.pathname })
             ])
           ])
         ])
