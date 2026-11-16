@@ -12,7 +12,7 @@ for (const pg of pages) for (const [vp,[w,hh]] of Object.entries(VPS)) {
   p.on('pageerror', e=>errs.push('pageerror '+e.message));
   p.on('requestfailed', r=>errs.push('reqfail '+r.url()));
   p.on('response', r=>{ if(r.status()>=400) errs.push(r.status()+' '+r.url()); });
-  await p.goto('http://localhost:8765/'+pg); await p.waitForTimeout(400);
+  await p.goto((process.env.BASE_URL || 'http://localhost:8765/')+pg); await p.waitForTimeout(400);
   const chk = await p.evaluate(()=>({
     overflow: document.documentElement.scrollWidth > window.innerWidth,
     h1: document.querySelector('h1')?.textContent, logoOk: !!document.querySelector('svg.mc-logo'),

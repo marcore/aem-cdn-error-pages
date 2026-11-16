@@ -2,6 +2,8 @@
 
 This is an example of a branded CDN error page for AEM as a Cloud Service, hosted on GitHub Pages instead of the Azure Blob Storage used in the [Adobe tutorial](https://experienceleague.adobe.com/en/docs/experience-manager-learn/cloud-service/content-delivery/custom-error-pages#cdn-error-pages). It uses a placeholder brand, "My Company", that you replace with your own.
 
+Live preview: <https://marcore.github.io/aem-cdn-error-pages/?code=503> (switch codes with the buttons in the bottom right corner). A copy of the CDN shell with `status="503"` is at <https://marcore.github.io/aem-cdn-error-pages/simulate-503.html>.
+
 The Adobe-managed CDN shows this page only when it cannot reach the AEM origin. The CDN builds a minimal HTML shell from `cdn.yaml` and loads three files that you host yourself:
 
 ```html
@@ -62,7 +64,7 @@ npm run validate       # 3 viewports x 6 variants: console, network, overflow, a
 
 ## Configure AEM
 
-1. Copy `config/cdn.yaml` into the `config/` folder of the AEM project, or merge the `errorPages` block into an existing `cdn.yaml`. Replace the placeholder URLs with your GitHub Pages URLs.
+1. Copy `config/cdn.yaml` into the `config/` folder of the AEM project, or merge the `errorPages` block into an existing `cdn.yaml`. The URLs point to this demo. If you fork the repository, change them to your own GitHub Pages URLs.
 2. Deploy it with a Cloud Manager **config pipeline**.
 3. Test it:
 
