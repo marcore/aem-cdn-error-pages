@@ -18,7 +18,7 @@ The Adobe-managed CDN shows this page only when it cannot reach the AEM origin. 
 ## Layout
 
 ```
-site/                    # published to GitHub Pages
+docs/                    # published to GitHub Pages
   error.js               # jsUrl: renders the page (vanilla JS, no build step)
   error.css              # cssUrl
   favicon.ico            # icoUrl
@@ -26,7 +26,6 @@ site/                    # published to GitHub Pages
   simulate-503.html      # exact copy of the CDN shell, with status="503"
 config/cdn.yaml          # CDN rule to copy into the AEM project's config folder
 scripts/validate.mjs     # Playwright checks at 3 viewports
-.github/workflows/pages.yml
 ```
 
 ## Behavior
@@ -40,10 +39,10 @@ scripts/validate.mjs     # Playwright checks at 3 viewports
 
 ## Rebrand
 
-- **Name:** set `BRAND` at the top of `site/error.js`, and set `title` in `config/cdn.yaml`.
-- **Logo:** replace the `LOGO` SVG string in `site/error.js`, and replace `site/favicon.ico`.
-- **Colours and font:** edit the custom properties in `:root` at the top of `site/error.css`. To use a brand font, add `@font-face` rules that point to WOFF2 files under `site/`, and put the family first in `--mc-font`. Check that the font licence allows public hosting.
-- **Copy:** edit `COPY` in `site/error.js`.
+- **Name:** set `BRAND` at the top of `docs/error.js`, and set `title` in `config/cdn.yaml`.
+- **Logo:** replace the `LOGO` SVG string in `docs/error.js`, and replace `docs/favicon.ico`.
+- **Colours and font:** edit the custom properties in `:root` at the top of `docs/error.css`. To use a brand font, add `@font-face` rules that point to WOFF2 files under `docs/`, and put the family first in `--mc-font`. Check that the font licence allows public hosting.
+- **Copy:** edit `COPY` in `docs/error.js`.
 
 ## Run locally
 
@@ -56,12 +55,10 @@ npm run validate       # 3 viewports x 6 variants: console, network, overflow, a
 
 ## Publish to GitHub Pages
 
-1. Push this repository to GitHub.
-2. Under **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
-3. Push to `main`. The workflow publishes `site/` to `https://<github-user>.github.io/<repo>/`.
+1. Push this repository to GitHub. It must be public, because the CDN fetches the files without authentication.
+2. Under **Settings → Pages → Build and deployment**, set **Source** to **Deploy from a branch**, with branch `main` and folder `/docs`.
+3. The site is published at `https://<github-user>.github.io/<repo>/`. `docs/.nojekyll` turns off Jekyll processing.
 4. Open `https://<github-user>.github.io/<repo>/?code=503` to check the result.
-
-You can also skip the workflow: rename `site/` to `docs/` and set Pages to **Deploy from a branch** with `main` and `/docs`.
 
 ## Configure AEM
 
